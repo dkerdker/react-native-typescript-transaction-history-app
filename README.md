@@ -2,16 +2,16 @@ Navigate to the project directory:
 
 Using Bash
 
-1. Navigate to directory
+1. Navigate to directory<br>
 cd react-native-typescript-transaction-history-app
 
-2. Install dependencies:
+2. Install dependencies:<br>
 npm i
 
-3. Run with Expo:
+3. Run with Expo:<br>
 npm start
 
-4. Choose Platform, Developed with (Web):
+4. Choose Platform, Developed with (Web):<br>
 w
 
 Sign in with Credential Authentication or Biometric Authentication:
