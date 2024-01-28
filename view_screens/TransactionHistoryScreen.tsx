@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  FlatList,
   SafeAreaView,
   StyleSheet,
   Alert,
   StatusBar,
   Pressable,
-  Button,
   ScrollView,
-  Dimensions,
   Modal,
   TouchableOpacity,
 } from "react-native";
@@ -65,7 +62,7 @@ const TransactionHistoryScreen = () => {
           >
             <Text style={styles.buttonText}>
               Authenticate Biometrics
-              <br />
+              {"\n"}
               to show Amount
             </Text>
           </TouchableOpacity>
@@ -89,7 +86,7 @@ const TransactionHistoryScreen = () => {
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
               Biometric authentication needed
-              <br />
+              {"\n"}
               to view amount.
             </Text>
             <Pressable

@@ -1,5 +1,5 @@
 
-import { View, Text, FlatList, SafeAreaView, StyleSheet, StatusBar, Button, TouchableOpacity  } from "react-native";
+import { View, Text, StyleSheet, StatusBar, } from "react-native";
 
 import { useRoute } from '@react-navigation/native';
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   View,
   Text,
@@ -11,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import DATA from "../modal_data/transaction_history.json";
+// import DATA from "../modal_data/transaction_history.json";
 import { ROUTES } from "../modal_data/routes.js";
 
 interface ListTransactionsProps {

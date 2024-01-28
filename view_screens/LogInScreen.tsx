@@ -100,8 +100,7 @@ const LogInScreen = () => {
         onPress={authenticateWithBiometrics}
       >
         <Text style={styles.buttonText}>
-          Login with
-          <br />
+          Login with{"\n"}
           Biometric Authentication
         </Text>
       </TouchableOpacity>
@@ -119,8 +118,7 @@ const LogInScreen = () => {
 
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                Biometric Authentication login failed.
-                <br />
+                Biometric Authentication login failed.{"\n"}
                 Try Credentials Authentication log in.
               </Text>
               <Pressable
@@ -147,7 +145,7 @@ const LogInScreen = () => {
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
                 Credentials Authentication failed.
-                <br />
+                {"\n"}
                 Try Biometric Authentication log in.
               </Text>
               <Pressable
