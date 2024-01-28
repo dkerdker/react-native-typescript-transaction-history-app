@@ -1,0 +1,169 @@
+[{
+        "id": "9870321487912",
+        "title": "Paypal Transfer",
+        "amount": 349,
+        "date": "2023-04-27",
+        "description": "One-time payment transfer from favourite transfer account.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "8823456781443",
+        "title": "Auto Deposit 21",
+        "amount": 119,
+        "date": "2023-05-24",
+        "description": "Automated deposit from LordBank account ref.112",
+        "is_credit_type": 1
+    },
+    {
+        "id": "7321546571246",
+        "title": "Web Mag subscription Jun",
+        "amount": 12,
+        "date": "2023-06-12",
+        "description": "Automated purchase of monthly subscription.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "1234516789013",
+        "title": "Another Transaction",
+        "amount": 50,
+        "date": "2023-07-01",
+        "description": "Description of another transaction.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "4567890123499",
+        "title": "Expense Report",
+        "amount": 75,
+        "date": "2023-08-15",
+        "description": "Expense report submission.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "7890123456789",
+        "title": "Online Shopping",
+        "amount": 200,
+        "date": "2023-09-05",
+        "description": "Shopping for various items online.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "2345678901234",
+        "title": "Utility Bill Payment",
+        "amount": 150,
+        "date": "2023-10-20",
+        "description": "Payment of monthly utility bills.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "5678901234567",
+        "title": "Grocery Store",
+        "amount": 80,
+        "date": "2023-11-12",
+        "description": "Purchase of groceries for the month.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "8901234567890",
+        "title": "Health Insurance Premium",
+        "amount": 300,
+        "date": "2023-12-03",
+        "description": "Payment of health insurance premium.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "3456789012345",
+        "title": "Eating Out",
+        "amount": 40,
+        "date": "2024-01-15",
+        "description": "Dinner at a local restaurant.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "6789012345678",
+        "title": "Gym Membership",
+        "amount": 80,
+        "date": "2024-02-08",
+        "description": "Monthly gym membership fee.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "9012345678901",
+        "title": "Tech Gadgets Purchase",
+        "amount": 500,
+        "date": "2024-03-22",
+        "description": "Purchase of the latest tech gadgets.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "1122334455667",
+        "title": "Vacation Expenses",
+        "amount": 1000,
+        "date": "2024-04-10",
+        "description": "Expenses during a vacation trip.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "2233445566778",
+        "title": "Car Maintenance",
+        "amount": 150,
+        "date": "2024-05-05",
+        "description": "Regular maintenance of the car.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "3344556677889",
+        "title": "Mobile Phone Upgrade",
+        "amount": 700,
+        "date": "2024-06-18",
+        "description": "Upgrade to the latest mobile phone model.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "1234567890123",
+        "title": "Coffee Shop",
+        "amount": 5,
+        "date": "2024-09-01",
+        "description": "Morning coffee at a local cafe.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "2345699991234",
+        "title": "Bookstore Purchase",
+        "amount": 30,
+        "date": "2024-09-15",
+        "description": "Buying a new book for leisure.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "999789012345",
+        "title": "Home Office Supplies",
+        "amount": 50,
+        "date": "2024-10-05",
+        "description": "Purchase of office supplies for home.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "4567890123456",
+        "title": "Fitness Class Fee",
+        "amount": 20,
+        "date": "2024-10-20",
+        "description": "Participation fee for a fitness class.",
+        "is_credit_type": 0
+    },
+    {
+        "id": "5678901239967",
+        "title": "Dinner with Friends",
+        "amount": 60,
+        "date": "2024-11-02",
+        "description": "Dinner outing with friends.",
+        "is_credit_type": 1
+    },
+    {
+        "id": "9989012345678",
+        "title": "Home Appliance Repair",
+        "amount": 100,
+        "date": "2024-11-18",
+        "description": "Repair of a malfunctioning home appliance.",
+        "is_credit_type": 0
+    }
+]
