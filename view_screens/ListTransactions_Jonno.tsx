@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-
 import {
   View,
   Text,
@@ -7,7 +5,6 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
-  RefreshControl,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -21,81 +18,57 @@ interface ListTransactionsProps {
 const ListTransactions: React.FC<ListTransactionsProps> = ({
   isAuthenticated,
 }) => {
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const [refreshing, setRefreshing] = useState(false);
-
-  const [dataList, setDataList] = useState(null);
-
-  console.log(dataList);
-
-  const fetchData = () => {
-  try {
-    // Assuming data.json is in the same directory
-    const jsonData = require("../modal_data/transaction_history.json");
-
-    // Update state with fetched data
-    setDataList(jsonData);
-
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
-
-  const handleRefresh = () => {
-    setRefreshing(true);
-    fetchData();
-  };
-
   const navigation = useNavigation();
 
-  // const renderTransactionItems = ({ item, index }: { item: ListTransactionsProps; index: number }) => {
 
-  const renderTransactionItems = (Data, isAuthenticated) => {
-    const item = Data.item;
+    const renderTransactionItems = ({ item, index }: { item: ListTransactionsProps; index: number }) => {
+
     return (
       <TouchableOpacity
-        disabled={!isAuthenticated}
         onPress={() =>
           navigation.push(ROUTES.TRANSACTION_DETAILS, { transactionData: item })
         }
       >
-        <View
-          style={
-            isAuthenticated
-              ? [styles.item, styles.info, styles.boxWithShadow]
-              : [styles.item, styles.info]
-          }
-        >
+        <View style={{ ...styles.item, ...styles.info }}>
           {/* colour coded debit/credit */}
           <View style={styles.first_line}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.info}>Type: </Text>
               {item.is_credit_type ? (
-                <Text style={[styles.info, styles.credit]}>Credit</Text>
+                <Text style={{ ...styles.info, ...styles.credit }}>Credit</Text>
               ) : (
-                <Text style={[styles.info, styles.debit]}>Debit</Text>
+                <Text style={{ ...styles.info, ...styles.debit }}>Debit</Text>
               )}
             </View>
 
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.info}>Amount: </Text>
+
+              {ListTransactionsProps.isAuthenticated} ?
+              {item.is_credit_type ? (
+                <Text
+                  style={{ ...styles.info, ...styles.title, ...styles.credit }}
+                >
+                  ${item.amount}
+                </Text>
+              ) : (
+                <Text
+                  style={{ ...styles.info, ...styles.title, ...styles.debit }}
+                >
+                  ${item.amount}
+                </Text>
+              )}
+              :
               <Text
-                style={[
-                  styles.info,
-                  styles.title,
-                  item.is_credit_type ? styles.credit : styles.debit,
-                ]}
+                style={{ ...styles.info, ...styles.title, ...styles.credit }}
               >
-                ${isAuthenticated ? item.amount : "▧▧▧"}
+                $▧▧▧
               </Text>
             </View>
           </View>
 
           {/* transaction title */}
-          <Text style={[styles.info, styles.title]}>{item.title}</Text>
+          <Text style={{ ...styles.info, ...styles.title }}>{item.title}</Text>
 
           {/* other info */}
           {/* <Text style={styles.info}>Date: {item.date}</Text>
@@ -107,15 +80,14 @@ const ListTransactions: React.FC<ListTransactionsProps> = ({
 
   return (
     <View>
-      <FlatList
-        keyExtractor={(item) => item.id}
-        // data={data}
-        data={dataList}
-        renderItem={(item) => renderTransactionItems(item, isAuthenticated)}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
-        }
-      />
+      <ScrollView>
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={DATA}
+          // renderItem={renderTransactionItems}
+          renderItem={(item) => renderTransactionItems(item, ListTransactionsProps)}
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -150,13 +122,6 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 25,
-  },
-  boxWithShadow: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    elevation: 5,
   },
   info: {
     fontSize: 14,

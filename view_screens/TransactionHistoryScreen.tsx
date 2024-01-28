@@ -5,10 +5,13 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
+  Alert,
   StatusBar,
+  Pressable,
   Button,
   ScrollView,
   Dimensions,
+  Modal,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -21,9 +24,8 @@ import BiometricsPassTrue from "../modal_data/biometric_fingerprint_pass_true.js
 import ListTransactions from "./ListTransactions";
 
 const TransactionHistoryScreen = () => {
-
-    const [BiometricAuthentication, setBiometricAuthentication] = useState(false);
-
+  const [BiometricAuthentication, setBiometricAuthentication] = useState(false);
+  const [PopUp, setPopUp] = useState(false);
 
   const navigation = useNavigation();
 
@@ -35,10 +37,12 @@ const TransactionHistoryScreen = () => {
       if (fingerprintAttempt) {
         console.log("Biometric authentication successful!");
         navigation.navigate(ROUTES.TRANSACTION_HISTORY);
+
+        // reveal the amount here logic
+        setBiometricAuthentication(true);
       } else {
         console.log("Biometric authentication failed.");
-        setBiometricsFailed(true);
-        // <PopUpAlert isVisible={isModalVisible} onClose={toggleModal} />;
+        setPopUp(true);
       }
     } catch (error) {
       console.error("Error during biometric authentication:", error);
@@ -48,13 +52,55 @@ const TransactionHistoryScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row" }}>
+      <View>
         <Text style={styles.page_title}>Transaction History List</Text>
-        <TouchableOpacity style={styles.button} onPress={authenticateToShow}>
-          <Text style={styles.buttonText}>Authenticate to Show</Text>
-        </TouchableOpacity>
+        <View
+          style={
+            BiometricAuthentication ? { display: "none" } : { display: "flex" }
+          }
+        >
+          <TouchableOpacity
+            style={styles.button_auth}
+            onPress={authenticateToShow}
+          >
+            <Text style={styles.buttonText}>
+              Authenticate Biometrics
+              <br />
+              to show Amount
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <ListTransactions isAuthenticated={BiometricAuthentication}/>
+
+      <ScrollView>
+        <ListTransactions isAuthenticated={BiometricAuthentication} />
+      </ScrollView>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={PopUp}
+        onRequestClose={() => {
+          Alert.alert("Alert has been closed.");
+          setPopUp(!PopUp);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>
+              Biometric authentication needed
+              <br />
+              to view amount.
+            </Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setPopUp(!PopUp)}
+            >
+              <Text style={styles.textStyle}>OK</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -110,6 +156,14 @@ const styles = StyleSheet.create({
   debit: {
     color: "red",
   },
+  button_auth: {
+    backgroundColor: "#d14adf",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 10,
+    marginHorizontal: "auto",
+  },
   button: {
     backgroundColor: "#d14adf",
     borderRadius: 10,
@@ -121,6 +175,44 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 16,
+    textAlign: "center",
+  },
+
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    paddingVertical: 40,
+    paddingHorizontal: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
     textAlign: "center",
   },
 });

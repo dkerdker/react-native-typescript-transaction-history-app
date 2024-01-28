@@ -18,14 +18,12 @@ import BiometricsPassDeny from "../modal_data/biometric_fingerprint_pass_deny.js
 import BiometricsPassTrue from "../modal_data/biometric_fingerprint_pass_true.js";
 
 const LogInScreen = () => {
-
   const [BiometricsFailed, setBiometricsFailed] = useState(false);
+  const [CredentialsFailed, setCredentialsFailed] = useState(false);
 
-
-
-  useEffect(() => {
-    authenticateWithBiometrics();
-  }, []);
+  // useEffect(() => {
+  //   authenticateWithBiometrics();
+  // }, []);
 
   const authenticateWithBiometrics = async () => {
     try {
@@ -51,6 +49,7 @@ const LogInScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+
   const handleLogin = () => {
     // login logic here
     const validUsername = "user";
@@ -61,10 +60,7 @@ const LogInScreen = () => {
       navigation.navigate(ROUTES.TRANSACTION_HISTORY);
     } else {
       // Failed login
-      Alert.alert(
-        "Login Failed",
-        "Invalid username or password. Please try again."
-      );
+      setCredentialsFailed(true);
     }
   };
 
@@ -89,25 +85,82 @@ const LogInScreen = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
+      <View
+        style={{
+          borderBottomColor: "lightgray",
+          borderBottomWidth: 3,
+          width: "50%",
+          marginVertical: 20,
+          marginHorizontal: 10,
+        }}
+      ></View>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={authenticateWithBiometrics}
+      >
+        <Text style={styles.buttonText}>
+          Login with
+          <br />
+          Biometric Authentication
+        </Text>
+      </TouchableOpacity>
+
       <Modal
         animationType="fade"
         transparent={true}
         visible={BiometricsFailed}
         onRequestClose={() => {
-          Alert.alert("Alert has been closed.");
           setBiometricsFailed(!BiometricsFailed);
         }}
       >
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Biometric authentication failed, <br />please use log in credentials.</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setBiometricsFailed(!BiometricsFailed)}
-            >
-              <Text style={styles.textStyle}>OK</Text>
-            </Pressable>
-          </View>
+          {/* <View style={styles.modalView}> */}
+
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Biometric Authentication login failed.
+                <br />
+                Try Credentials Authentication log in.
+              </Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setBiometricsFailed(!BiometricsFailed)}
+              >
+                <Text style={styles.textStyle}>OK</Text>
+              </Pressable>
+            </View>
+
+        </View>
+      </Modal>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={CredentialsFailed}
+        onRequestClose={() => {
+          setCredentialsFailed(!CredentialsFailed);
+        }}
+      >
+        <View style={styles.centeredView}>
+          {/* <View style={styles.modalView}> */}
+
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Credentials Authentication failed.
+                <br />
+                Try Biometric Authentication log in.
+              </Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setCredentialsFailed(!CredentialsFailed)}
+              >
+                <Text style={styles.textStyle}>OK</Text>
+              </Pressable>
+            </View>
+
+          {/* <Text style={styles.modalText}>
+              Login Failed
+            </Text> */}
         </View>
       </Modal>
     </View>
@@ -163,8 +216,8 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    paddingVertical: 40,
-    paddingHorizontal: 30,
+    paddingVertical: 50,
+    paddingHorizontal: 40,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
