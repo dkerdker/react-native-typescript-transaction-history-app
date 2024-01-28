@@ -25,6 +25,6 @@ To change to false for testing, change the import file used:
 
 "BiometricsPassTrue" to "BiometricsPassDeny"
 
-line 33, for Login.tsx
+line 33, for Login.tsx<br>
 line 34, for TransactionHistoryScreen.tsx
 
